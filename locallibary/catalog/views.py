@@ -1,5 +1,6 @@
 from django.shortcuts   import render
 from .models            import Item, Store, ItemInstance, Category
+from django.views       import generic
 
 def index(request):
     #View home page of site.
@@ -23,3 +24,21 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+class ItemListView(generic.ListView):
+    model = Item 
+class ItemDetailView(generic.DetailView):
+    model = Item
+
+class ItemListView(generic.ListView):
+    model = Item
+    paginate_by = 10
+
+class StoreListView(generic.ListView):
+    model = Item 
+class StoreDetailView(generic.DetailView):
+    model = Item
+
+class StoreListView(generic.ListView):
+    model = Item
+    paginate_by = 10
