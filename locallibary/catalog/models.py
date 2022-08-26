@@ -1,6 +1,8 @@
-from unicodedata import category
-from django.db      import models
-from django.urls    import reverse 
+from django.contrib.auth.models     import User
+from unicodedata                    import category
+from django.db                      import models
+from django.urls                    import reverse 
+from datetime                       import date
 import uuid
 
 
@@ -65,6 +67,13 @@ class ItemInstance(models.Model):
         default='m',
         help_text='Item status',
     )
+    got_item = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def is_overdue(self):
+    #Determines if item need to be renewed 
+        return bool(self.due_back and date.today() > self.due_back)
+
 
     class Meta:
         ordering = ['due_back']

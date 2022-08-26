@@ -45,13 +45,14 @@ class StoreAdmin(admin.ModelAdmin):
     fields = ['name']
 
 class ItemInstanceAdmin(admin.ModelAdmin):
-    list_filter = ('status', 'due_back')
+    list_display = ('item', 'status', 'got_item')
+    list_filter = ('status', 'due_back','got_item')
 
     fieldsets = (
             (None, {
                 'fields': ('item', 'imprint', 'id')
             }),
             ('Availability', {
-                'fields': ('status', 'due_back')
+                'fields': ('status', 'due_back','got_item')
             }),
         )

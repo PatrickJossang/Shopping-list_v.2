@@ -1,6 +1,7 @@
-from django.shortcuts   import render
-from .models            import Item, Store, ItemInstance, Category
-from django.views       import generic
+from django.shortcuts               import render
+from .models                        import Item, Store, ItemInstance, Category
+from django.views                   import generic
+from django.contrib.auth.mixins     import LoginRequiredMixin
 
 def index(request):
     #View home page of site.
@@ -61,3 +62,12 @@ def index(request):
 
     # Render the HTML template index.html.
     return render(request, 'index.html', context=context)
+
+
+class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
+    model = ItemInstance
+    template_name ='catalog/iteminstance_list_got_item_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return ItemInstance.objects.filter(got_item=self.request.user).filter(status__exact='o').order_by('due_back')

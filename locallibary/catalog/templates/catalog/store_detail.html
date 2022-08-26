@@ -10,7 +10,7 @@
   <p><strong>Genre:</strong> {{ store.genre.all|join:", " }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>How much store</h4>
+    <h4>How manny stores</h4>
 
     {% for copy in store.storeinstance_set.all %}
       <hr>
@@ -18,7 +18,7 @@
         {{ copy.get_status_display }}
       </p>
       {% if copy.status != 'a' %}
-        <p><strong>Due to be restokked:</strong> {{ copy.due_back }}</p>
+        <p><strong>Due to be reopend:</strong> {{ copy.due_back }}</p>
       {% endif %}
       <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
       <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
