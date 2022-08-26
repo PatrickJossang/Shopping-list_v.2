@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Store List</h1>
+  {% if Store_list %}
+  <ul>
+    {% for Store in Store_list %}
+      <li>
+        <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no stores in this category</p>
+  {% endif %}
+{% endblock %}

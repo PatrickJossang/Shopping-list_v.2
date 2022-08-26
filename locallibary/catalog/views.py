@@ -35,10 +35,29 @@ class ItemListView(generic.ListView):
     paginate_by = 10
 
 class StoreListView(generic.ListView):
-    model = Item 
+    model = Store
 class StoreDetailView(generic.DetailView):
-    model = Item
+    model = Store
 
 class StoreListView(generic.ListView):
-    model = Item
+    model = Store
     paginate_by = 10
+
+
+def index(request):
+    # …
+
+    num_stores = Store.objects.count()  # The 'all()' is implied by default.
+    num_items = Item.objects.count()
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
+    context = {
+        'num_items': num_items,
+        'num_stores': num_stores,
+        'num_visits': num_visits,
+    }
+
+    # Render the HTML template index.html.
+    return render(request, 'index.html', context=context)

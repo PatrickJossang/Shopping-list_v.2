@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ store.title }}</h1>
+
+  <p><strong>Store:</strong> <a href="">{{ store.store }}</a></p> <!-- store detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ store.summary }}</p>
+  <p><strong>ISBN:</strong> {{ store.isbn }}</p>
+  <p><strong>Language:</strong> {{ store.language }}</p>
+  <p><strong>Genre:</strong> {{ store.genre.all|join:", " }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>How much store</h4>
+
+    {% for copy in store.storeinstance_set.all %}
+      <hr>
+      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}
+      </p>
+      {% if copy.status != 'a' %}
+        <p><strong>Due to be restokked:</strong> {{ copy.due_back }}</p>
+      {% endif %}
+      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

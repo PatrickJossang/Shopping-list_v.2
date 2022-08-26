@@ -5,7 +5,8 @@
   <p>Welcome to Shoppinglist</p>
 
   <ul>
-    <li><strong>Item:</strong> {{ num_item }}</li>
-    <li><strong>Store:</strong> {{ num_store }}</li>
+    <li><strong>Items:</strong> {{ num_items }}</li>
+    <li><strong>Stores:</strong> {{ num_stores }}</li>
   </ul>
+  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
 {% endblock %}
