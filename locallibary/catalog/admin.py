@@ -13,10 +13,16 @@ class StoreAdmin(admin.ModelAdmin):
 #admin class with the associated model
 admin.site.register(Store, StoreAdmin)
 
-#Admin classes for Book
+
+class ItemInstanceInline(admin.TabularInline):
+    model = ItemInstance
+
+#Admin classes for Item
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'store', 'display_category')
+
+    inlines = [ItemInstanceInline]
 
 #Admin classes for ItemInstance
 @admin.register(ItemInstance)
@@ -25,12 +31,13 @@ class ItemInstanceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('book', 'imprint', 'id')
+            'fields': ('item', 'imprint', 'id')
         }),
         ('Availability', {
             'fields': ('status', 'due_back')
         }),
     )
+
 
 class StoreAdmin(admin.ModelAdmin):
     list_display = ('name')
@@ -39,3 +46,12 @@ class StoreAdmin(admin.ModelAdmin):
 
 class ItemInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')
+
+    fieldsets = (
+            (None, {
+                'fields': ('item', 'imprint', 'id')
+            }),
+            ('Availability', {
+                'fields': ('status', 'due_back')
+            }),
+        )
