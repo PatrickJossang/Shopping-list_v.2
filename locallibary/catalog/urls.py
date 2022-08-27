@@ -8,4 +8,8 @@ urlpatterns = [
     path('store/', views.StoreListView.as_view(),name='store'),
     path('store/<int:pk>', views.StoreDetailView.as_view(), name='store-detail'),
     path('myitems/', views.LoanedItemsByUserListView.as_view(), name='my-items'),
+    path('item/<uuid:pk>/renew/', views.renew_item, name='renew-item'),
+    path('store/create/', views.StoreCreate.as_view(), name='store-create'),
+    path('store/<int:pk>/update/', views.StoreUpdate.as_view(), name='store-update'),
+    path('store/<int:pk>/delete/', views.StoreDelete.as_view(), name='store-delete'),
 ]

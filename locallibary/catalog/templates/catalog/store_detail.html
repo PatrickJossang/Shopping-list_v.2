@@ -5,9 +5,7 @@
 
   <p><strong>Store:</strong> <a href="">{{ store.store }}</a></p> <!-- store detail link not yet defined -->
   <p><strong>Summary:</strong> {{ store.summary }}</p>
-  <p><strong>ISBN:</strong> {{ store.isbn }}</p>
   <p><strong>Language:</strong> {{ store.language }}</p>
-  <p><strong>Genre:</strong> {{ store.genre.all|join:", " }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>How manny stores</h4>
@@ -20,7 +18,6 @@
       {% if copy.status != 'a' %}
         <p><strong>Due to be reopend:</strong> {{ copy.due_back }}</p>
       {% endif %}
-      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
       <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
     {% endfor %}
   </div>

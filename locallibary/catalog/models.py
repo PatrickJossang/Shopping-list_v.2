@@ -1,34 +1,16 @@
 from django.contrib.auth.models     import User
-from unicodedata                    import category
 from django.db                      import models
 from django.urls                    import reverse 
 from datetime                       import date
-import uuid
-
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=200, help_text='Enter a item category')
-
-    def __str__(self):
-        #String for representing the Model object.
-        return self.name
-
-        
+import uuid       
 
 class Item(models.Model):
-    """Model representing a item (but not a specific Item)."""
+    #Model representing a item (but not a specific Item).
     title = models.CharField(max_length=200)
-
 
     store = models.ForeignKey('Store', on_delete=models.SET_NULL, null=True)
 
     summary = models.TextField(max_length=1000, help_text='Enter a description of Item ')
-    isbn = models.CharField('ISBN', max_length=13, unique=True,
-                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
-
-
-    category = models.ManyToManyField(Category, help_text='Select a item category')
 
     def __str__(self):
         #String for representing the Model object.
@@ -37,13 +19,6 @@ class Item(models.Model):
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this item."""
         return reverse('item-detail', args=[str(self.id)])
-
-    def display_category(self):
-        return ', '.join(category.name for category in self.category.all()[:3])
-
-    display_category.short_description = 'Category'
-
-
 
 class ItemInstance(models.Model):
     #Model representing a specific item 

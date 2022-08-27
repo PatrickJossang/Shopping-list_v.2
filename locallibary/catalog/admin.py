@@ -1,34 +1,27 @@
 from django.contrib     import admin
-from .models            import Store, Category, Item, ItemInstance
+from .models            import Store, Item, ItemInstance
 
-#admin.site.register(Store)
-#admin.site.register(Category)
-#admin.site.register(Item)
-#admin.site.register(ItemInstance)
-
-# admin class
+##############STORE####################
 class StoreAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
+
+    fields = ['name']
+
 
 #admin class with the associated model
 admin.site.register(Store, StoreAdmin)
 
 
+##############ITEMS####################
 class ItemInstanceInline(admin.TabularInline):
     model = ItemInstance
 
 #Admin classes for Item
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('title', 'store', 'display_category')
+    list_display = ('title', 'store')
 
     inlines = [ItemInstanceInline]
-
-
-class StoreAdmin(admin.ModelAdmin):
-    list_display = ('name')
-
-    fields = ['name']
 
 @admin.register(ItemInstance)
 class ItemInstanceAdmin(admin.ModelAdmin):

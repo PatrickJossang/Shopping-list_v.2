@@ -2,15 +2,15 @@
 
 {% block content %}
   <h1>Store List</h1>
-  {% if Store_list %}
+  {% if store_list %}
   <ul>
-    {% for Store in Store_list %}
+    {% for store in store_list %}
       <li>
-        <p><strong>Store:</strong> <a href="{{ item.store.get_absolute_url }}">{{ item.store }}</a></p>
+        <a href="{{ item.get_absolute_url }}">{{ store.title }}</a>
       </li>
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no stores in this category</p>
+    <p>There are no stores here</p>
   {% endif %}
 {% endblock %}
