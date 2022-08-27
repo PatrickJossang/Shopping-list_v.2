@@ -4,6 +4,8 @@ from django.urls                    import reverse
 from datetime                       import date
 import uuid       
 
+
+################ITEM###############################
 class Item(models.Model):
     #Model representing a item (but not a specific Item).
     title = models.CharField(max_length=200)
@@ -58,19 +60,20 @@ class ItemInstance(models.Model):
         #String for representing the Model object.
         return f'{self.id} ({self.item.title})'
 
-class Store(models.Model):
-    #Model representing a store.
-    name = models.CharField(max_length=100)
-    
+#################STORE###############################
 
+class Store(models.Model):
+    """Model representing an store."""
+    type_name = models.CharField(max_length=100)
+    compeny_name = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['compeny_name', 'type_name']
 
     def get_absolute_url(self):
-        #Returns the URL to access a particular store.
+        """Returns the URL to access a particular author instance."""
         return reverse('store-detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.name}'
+        return f'{self.compeny_name}, {self.type_name}'

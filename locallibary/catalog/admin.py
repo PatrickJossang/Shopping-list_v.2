@@ -3,13 +3,14 @@ from .models            import Store, Item, ItemInstance
 
 ##############STORE####################
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('compeny_name','type_name',)
 
-    fields = ['name']
+    fields = ['compeny','type_name']
 
 
 #admin class with the associated model
 admin.site.register(Store, StoreAdmin)
+
 
 
 ##############ITEMS####################
@@ -19,7 +20,7 @@ class ItemInstanceInline(admin.TabularInline):
 #Admin classes for Item
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('title', 'store')
+    list_display = ('title', 'store',)
 
     inlines = [ItemInstanceInline]
 

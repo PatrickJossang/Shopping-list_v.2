@@ -43,13 +43,9 @@ class ItemDetailView(generic.DetailView):
 
 class StoreListView(generic.ListView):
     model = Store
+    paginate_by = 2
 class StoreDetailView(generic.DetailView):
     model = Store
-
-class StoreListView(generic.ListView):
-    model = Store
-    paginate_by = 10
-
 
 def index(request):
     # …
@@ -70,7 +66,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class LoanedItemsByUserListView(LoginRequiredMixin,generic.ListView):
+class UsersItemsByListView(LoginRequiredMixin,generic.ListView):
     model = ItemInstance
     template_name ='catalog/iteminstance_list_got_item_user.html'
     paginate_by = 10
