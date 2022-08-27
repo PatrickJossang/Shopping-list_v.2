@@ -6,7 +6,7 @@
   <ul>
     {% for Store in Store_list %}
       <li>
-        <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+        <p><strong>Store:</strong> <a href="{{ item.store.get_absolute_url }}">{{ item.store }}</a></p>
       </li>
     {% endfor %}
   </ul>

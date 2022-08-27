@@ -77,6 +77,7 @@ class ItemInstance(models.Model):
 
     class Meta:
         ordering = ['due_back']
+        permissions = (("can_mark_renewed", "Set Item as renewed"),)
 
     def __str__(self):
         #String for representing the Model object.

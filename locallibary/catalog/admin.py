@@ -24,29 +24,16 @@ class ItemAdmin(admin.ModelAdmin):
 
     inlines = [ItemInstanceInline]
 
-#Admin classes for ItemInstance
-@admin.register(ItemInstance)
-class ItemInstanceAdmin(admin.ModelAdmin):
-    list_filter = ('status', 'due_back')
-
-    fieldsets = (
-        (None, {
-            'fields': ('item', 'imprint', 'id')
-        }),
-        ('Availability', {
-            'fields': ('status', 'due_back')
-        }),
-    )
-
 
 class StoreAdmin(admin.ModelAdmin):
     list_display = ('name')
 
     fields = ['name']
 
+@admin.register(ItemInstance)
 class ItemInstanceAdmin(admin.ModelAdmin):
-    list_display = ('item', 'status', 'got_item')
-    list_filter = ('status', 'due_back','got_item')
+    list_display = ('item', 'status', 'got_item','due_back', 'id')
+    list_filter = ('status', 'due_back')
 
     fieldsets = (
             (None, {

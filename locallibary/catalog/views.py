@@ -64,7 +64,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
+class LoanedItemsByUserListView(LoginRequiredMixin,generic.ListView):
     model = ItemInstance
     template_name ='catalog/iteminstance_list_got_item_user.html'
     paginate_by = 10
