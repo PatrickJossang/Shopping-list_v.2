@@ -107,9 +107,10 @@ def renew_item(request, pk):
 
     return render(request, 'catalog/item_renew_item.html', context)
 
+#############RE-STORES##################
 class StoreCreate(CreateView):
         model = Store
-        fields = ['name']
+        fields = ['company_name', 'type_name']
 
 class StoreUpdate(UpdateView):
     model = Store
@@ -117,4 +118,17 @@ class StoreUpdate(UpdateView):
 
 class StoreDelete(DeleteView):
     model = Store
-    success_url = reverse_lazy('store')
+    success_url = reverse_lazy('stores')
+
+############RE-ITEMS#####################
+class ItemCreate(CreateView):
+        model = Item
+        fields = ['item_name']
+
+class ItemUpdate(UpdateView):
+    model = Item
+    fields = '__all__' # potential security issue if more fields added
+
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = reverse_lazy('items')
