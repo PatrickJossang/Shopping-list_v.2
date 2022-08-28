@@ -5,7 +5,7 @@ from .models            import Store, Item, ItemInstance
 class StoreAdmin(admin.ModelAdmin):
     list_display = ('compeny_name','type_name',)
 
-    fields = ['compeny','type_name']
+    fields = ['compeny_name','type_name']
 
 
 #admin class with the associated model

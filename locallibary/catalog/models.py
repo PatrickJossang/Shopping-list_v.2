@@ -63,17 +63,16 @@ class ItemInstance(models.Model):
 #################STORE###############################
 
 class Store(models.Model):
-    """Model representing an store."""
-    type_name = models.CharField(max_length=100)
-    compeny_name = models.CharField(max_length=100)
-
+    #Model representing an store.
+    compeny_name = models.CharField(max_length=100, help_text='Enter a compeny name', default=' ')
+    type_name = models.CharField(max_length=100, help_text='Enter a type name', default=' ')
     class Meta:
-        ordering = ['compeny_name', 'type_name']
+        ordering = ['type_name', 'compeny_name']
 
     def get_absolute_url(self):
-        """Returns the URL to access a particular author instance."""
-        return reverse('store-detail', args=[str(self.id)])
+        #Returns the URL to access a particular store instance.
+        return reverse('store_detail', args=[str(self.id)])
 
     def __str__(self):
-        """String for representing the Model object."""
+        #String for representing the Model object.
         return f'{self.compeny_name}, {self.type_name}'
