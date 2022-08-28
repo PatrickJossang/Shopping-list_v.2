@@ -12,4 +12,7 @@ urlpatterns = [
     path('store/create/', views.StoreCreate.as_view(), name='store-create'),
     path('store/<int:pk>/update/', views.StoreUpdate.as_view(), name='store-update'),
     path('store/<int:pk>/delete/', views.StoreDelete.as_view(), name='store-delete'),
+    path('item/create/', views.ItemCreate.as_view(), name='item-create'),
+    path('item/<int:pk>/update/', views.ItemUpdate.as_view(), name='item-update'),
+    path('item/<int:pk>/delete/', views.ItemDelete.as_view(), name='item-delete'),
 ]

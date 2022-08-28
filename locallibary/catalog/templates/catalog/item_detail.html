@@ -1,14 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ item.title }}</h1>
+  <h1>Item: {{ item.title }}</h1>
 
   <p><strong>Store:</strong> <a href="">{{ item.store }}</a></p> <!-- store detail link not yet defined -->
   <p><strong>Summary:</strong> {{ item.summary }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>How much item</h4>
-
     {% for copy in item.iteminstance_set.all %}
       <hr>
       <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
@@ -21,3 +19,16 @@
     {% endfor %}
   </div>
 {% endblock %}
+ <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+      {% block sidebar %}
+        <ul class="sidebar-nav">
+          <li><a href="{% url 'renew-item' iteminst.id %}">Renew item</a></li>
+          <li><a href="{% url 'item-create' iteminst.id %}">add item</a></li>
+          <li><a href="{% url 'item-update' iteminst.id %}">update item</a></li>
+          <li><a href="{% url 'item-delete' iteminst.id %}">delete item</a></li>
+        </ul>
+      {% endblock %}
+    </div>
+  </div>

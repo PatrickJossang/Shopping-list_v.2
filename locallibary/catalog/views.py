@@ -118,12 +118,12 @@ class StoreUpdate(UpdateView):
 
 class StoreDelete(DeleteView):
     model = Store
-    success_url = reverse_lazy('stores')
+    success_url = reverse_lazy('store')
 
 ############RE-ITEMS#####################
 class ItemCreate(CreateView):
         model = Item
-        fields = ['item_name']
+        fields = ['title','store','summary']
 
 class ItemUpdate(UpdateView):
     model = Item
