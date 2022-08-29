@@ -5,13 +5,6 @@
 
   <p><strong>Store:</strong> <a href="">{{ item.store }}</a></p> <!-- store detail link not yet defined -->
   <p><strong>Summary:</strong> {{ item.summary }}</p>
- 
-  <p><strong>want to delete the item<strong> </p>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete.">
-  </form>
-
 
   <div style="margin-left:20px;margin-top:20px">
     {% for copy in item.iteminstance_set.all %}
@@ -31,7 +24,7 @@
       <div class="col-sm-2">
       {% block sidebar %}
         <ul class="sidebar-nav">
-          <li><a href="{% url 'item-create' %}?next={{request.path}}">add item</a></li>
+          <li><a href="{% url 'index' %}?next={{request.path}}">Home</a></li>
         </ul>
       {% endblock %}
     </div>
