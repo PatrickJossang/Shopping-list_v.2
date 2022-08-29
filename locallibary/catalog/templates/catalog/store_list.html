@@ -1,16 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Store List</h1>
+  <h1>store List</h1>
   {% if store_list %}
   <ul>
-    {% for compeny_name in store_list %}
+    {% for store in store_list %}
       <li>
-        <a href="{{ store.get_absolute_url }}">{{ store.title }}</a>
+        <a href="{{ store.get_absolute_url }}">{{ store.compeny_name }}</a>
       </li>
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no stores here</p>
+    <p>There are no items in this store</p>
   {% endif %}
 {% endblock %}

@@ -110,7 +110,7 @@ def renew_item(request, pk):
 #############RE-STORES##################
 class StoreCreate(CreateView):
         model = Store
-        fields = ['company_name', 'type_name']
+        fields = ['type_name', 'compeny_name']
 
 class StoreUpdate(UpdateView):
     model = Store
