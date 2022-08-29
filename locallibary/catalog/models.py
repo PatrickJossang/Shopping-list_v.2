@@ -22,6 +22,10 @@ class Item(models.Model):
         """Returns the URL to access a detail record for this item."""
         return reverse('item-detail', args=[str(self.id)])
 
+    def get_absolute_url(self):
+        """Returns the URL to access a detail record for this item."""
+        return reverse('item-delete', args=[str(self.id)])
+
 class ItemInstance(models.Model):
     #Model representing a specific item 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular Item across whole Store')

@@ -36,14 +36,14 @@ def index(request):
 
 class ItemListView(generic.ListView):
     model = Item 
-    paginate_by = 2
+    paginate_by = 100
 class ItemDetailView(generic.DetailView):
     model = Item
     
 
 class StoreListView(generic.ListView):
     model = Store
-    paginate_by = 2
+    paginate_by = 200
 class StoreDetailView(generic.DetailView):
     model = Store
 
