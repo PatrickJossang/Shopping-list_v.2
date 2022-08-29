@@ -11,6 +11,7 @@ from django.views.generic.edit          import CreateView, UpdateView, DeleteVie
 from django.urls                        import reverse_lazy
 import datetime
 
+
 def index(request):
     #View home page of site.
 
@@ -119,6 +120,7 @@ class StoreUpdate(UpdateView):
 class StoreDelete(DeleteView):
     model = Store
     success_url = reverse_lazy('store')
+    
 
 ############RE-ITEMS#####################
 class ItemCreate(CreateView):

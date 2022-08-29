@@ -3,13 +3,15 @@
 {% block content %}
   <h1>Item List</h1>
   {% if item_list %}
-  <ul>
+  <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
     {% for item in item_list %}
       <li>
         <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> ({{item.store}})
       </li>
     {% endfor %}
-  </ul>
+    </ul>
+  </div>
   {% else %}
     <p>There are no items in this store</p>
   {% endif %}

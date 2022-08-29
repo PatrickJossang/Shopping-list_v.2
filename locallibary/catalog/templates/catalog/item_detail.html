@@ -5,7 +5,13 @@
 
   <p><strong>Store:</strong> <a href="">{{ item.store }}</a></p> <!-- store detail link not yet defined -->
   <p><strong>Summary:</strong> {{ item.summary }}</p>
-  
+
+  <p><strong>Do you want to update this item</strong></p>
+  <button><a href="{% url 'item-update' item.id %}">Yes, update item</a></button>
+  <br></br>
+
+  <p><strong>Do you want to delete this Item</strong></p>
+  <button><a href="{% url 'item-delete' item.id %}">Yes, delete item</a></button>
   <div style="margin-left:20px;margin-top:20px">
     {% for copy in item.iteminstance_set.all %}
       <hr>
@@ -19,13 +25,23 @@
     {% endfor %}
   </div>
 {% endblock %}
- <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar %}
-        <ul class="sidebar-nav">
-          <li><a href="{% url 'index' %}?next={{request.path}}">Home</a></li>
-        </ul>
-      {% endblock %}
-    </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+    {% block sidebar %}
+      <ul class="sidebar-nav">
+    
+       {% if user.is_authenticated %}
+        <li>User: {{ user.get_username }}</li>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'items' %}">All items</a></li>
+        <li><a href="{% url 'store' %}">All stores</a></li>
+        <li><a href="{% url 'item-create' %}?next={{request.path}}">add item</a></li>
+        <li><a href="{% url 'store-create' %}?next={{request.path}}">add store</a></li>
+        <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+       {% else %}
+         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+       {% endif %}
+      </ul>
+   {% endblock %}
   </div>

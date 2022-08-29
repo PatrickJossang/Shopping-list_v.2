@@ -1,9 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>store List</h1>
+  <h1>Store list</h1>
   {% if store_list %}
-  <ul>
+  <div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
     {% for store in store_list %}
       <li>
         <a href="{{ store.get_absolute_url }}">{{ store.compeny_name }}</a>
